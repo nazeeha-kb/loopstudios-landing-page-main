@@ -18,6 +18,7 @@
 // Primary colors:
 $black: hsl(0, 0%, 0%);
 $grey-200: hsl(0, 0%, 85%);
+$grey-700: hsl(0, 0%, 60%);
 
 // font-size
 $text-para: 15px;
@@ -34,36 +35,218 @@ $text-para: 15px;
   flex-direction: $direction;
 }
 
-body {
+// global styles
+
+body,
+h1,
+h2,
+h3,
+h4,
+picture {
   margin: 0;
 }
 
-// Hero section and navbar.
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+li {
+  list-style: none;
+}
+ul {
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+// Background image for hero
 
 .cover {
   background-image: url("/images/mobile/image-hero.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  height: 60vh;
+  height: 54vh;
   color: white;
-  padding: 2rem;
+  padding: 1.5rem;
 }
+
+// Navbar and header
 
 .header {
   @include flex(row, space-between, center);
   font-size: large;
-  text-align: center;
+
+  .logo {
+    display: flex;
+    height: 1.5rem;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .hamburger-icon {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    &:active {
+    }
+  }
+
+  .nav-mobile {
+    display: none;
+  }
+
+  .nav-desktop {
+    display: none;
+  }
 }
 
-.nav-mobile {
-  display: none;
-}
-
-.nav-desktop {
-  display: none;
-}
+// Hero Section
 
 .hero {
-  text-transform: uppercase;
-  font-weight: 100;
+  @include flex(row, center, center);
+  width: 100%;
+  height: 100%;
+
+  .hero__item {
+    border: solid white 2px;
+    padding: 1.5rem;
+    font-size: 2.5rem;
+  }
+}
+
+// About section
+
+.about {
+  // block - y-axis
+  padding-block: 6rem;
+  // inline - x-axis
+  padding-inline: 1.5rem;
+
+  @include flex(column, center, center);
+  gap: 3rem;
+
+  .about__item {
+    text-align: center;
+    @include flex(column, center, center);
+    gap: 1.2rem;
+    h2 {
+      font-size: 2rem;
+      margin: 0;
+    }
+    p {
+      margin: 0;
+      color: $grey-700;
+      line-height: 1.6rem;
+      width: 90%;
+    }
+  }
+}
+
+// Creations
+
+.creations {
+  h3 {
+    font-size: 2rem;
+  }
+  text-align: center;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  button {
+    grid-row: 3/4;
+    justify-self: center;
+    margin-top: 1rem;
+    background-color: white;
+    border: solid black 2px;
+    width: fit-content;
+    font-size: 1rem;
+    text-transform: uppercase;
+    padding-block: 0.5rem;
+    padding-inline: 3rem;
+    letter-spacing: 4px;
+    &:hover {
+      cursor: pointer;
+      background-color: black;
+      color: white;
+      border-color: white;
+    }
+  }
+}
+
+.gallery {
+  display: grid;
+  gap: 1.5rem;
+  text-align: start;
+  padding-top: 1.4rem;
+}
+
+.gallery__item {
+  position: relative;
+
+  .overlay {
+    background: linear-gradient(to left, transparent, hsl(0, 0%, 0%));
+    inset: 0;
+    position: absolute;
+  }
+}
+
+h4 {
+  font-size: 1.5rem;
+  position: absolute;
+  color: white;
+  width: 34vw;
+  z-index: 10;
+  bottom: 1.4rem;
+  left: 1.4rem;
+}
+
+// Footer
+
+.footer {
+  background-color: black;
+  color: white;
+  @include flex(column, center, center);
+  text-align: center;
+  padding-block: 3.5rem;
+  margin-top: 5rem ;
+  .footer__item {
+  }
+  .logo {
+    height: 1.4rem;
+  }
+  .footer-nav {
+    @include flex(column, center, center);
+    gap: 1rem;
+    padding-top: 1.5rem;
+  }
+
+  .socials {
+    @include flex(row, center , center );
+    gap:1rem;
+    font-size: 1.5rem;
+  }
+
+  small {
+    color: $grey-700;
+    font-size: 1rem;
+  }
 }
