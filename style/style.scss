@@ -71,6 +71,7 @@ ul {
 a {
   text-decoration: none;
   color: white;
+  cursor: pointer;
 }
 
 // Background image for hero
@@ -106,8 +107,6 @@ a {
     color: white;
     font-size: 1.2rem;
     cursor: pointer;
-    &:active {
-    }
   }
 
   .nav-mobile {
@@ -164,7 +163,7 @@ a {
 // Creations
 
 .creations {
-  h3 {
+  h2 {
     font-size: 2rem;
   }
   text-align: center;
@@ -209,7 +208,7 @@ a {
   }
 }
 
-h4 {
+h3 {
   font-size: 1.5rem;
   position: absolute;
   color: white;
@@ -227,7 +226,7 @@ h4 {
   @include flex(column, center, center);
   text-align: center;
   padding-block: 3.5rem;
-  margin-top: 5rem ;
+  margin-top: 5rem;
   .footer__item {
   }
   .logo {
@@ -240,13 +239,135 @@ h4 {
   }
 
   .socials {
-    @include flex(row, center , center );
-    gap:1rem;
+    @include flex(row, center, center);
+    gap: 1rem;
     font-size: 1.5rem;
   }
 
   small {
     color: $grey-700;
     font-size: 1rem;
+  }
+}
+
+// Media Queries
+
+@media (min-width: 400px) {
+  // Hide hamburger icon
+  .hamburger-icon {
+    display: none;
+  }
+  // background image changes
+  .cover {
+    background-image: url("/images/desktop/image-hero.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 82vh;
+    line-height: 5rem;
+    color: white;
+    padding-inline: 10rem;
+    padding-top: 2rem;
+    font-size: smaller;
+  }
+
+  // show desktop nav
+  .header .nav-desktop {
+    @include flex(row, center, center);
+    gap: 2rem;
+  }
+
+  .header .logo {
+    height: 2rem;
+  }
+  // Hero section changes
+  .hero {
+    @include flex(column, center, start);
+    height: 80%;
+    .hero__item {
+      border: solid white 2px;
+      padding: 1.5rem;
+      font-size: 5rem;
+      width: 40rem;
+    }
+  }
+  // About section
+  .about {
+    @include flex(row, center, center);
+    padding-block: 10rem;
+    .about-content {
+      margin-left: -13rem;
+      margin-bottom: -10rem;
+      z-index: 10;
+      background-color: white;
+      width: 30rem;
+      padding: 4rem;
+      h2 {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  // Creations section
+  .creations {
+    grid-template-rows: 10vh 1fr;
+    // align-items: center;
+    // justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "item-1 item-2" "item-3 item-3";
+    padding-inline: 10rem;
+    text-align: start;
+
+    h2 {
+      font-size: 3rem;
+    }
+    button {
+      grid-row: auto;
+      margin: 0;
+      height: fit-content;
+      align-self: center;
+      justify-self: end;
+    }
+  }
+
+  // Gallery
+  .gallery {
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding-top: 3.5rem;
+  }
+
+  .gallery__item {
+    h3 {
+      font-size: 2rem;
+      width: 10vw;
+      bottom: 2rem;
+      left: 2rem;
+    }
+
+    .overlay {
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        hsla(0, 0%, 0%, 0.577)
+      );
+    }
+  }
+
+  // Footer section
+  .footer {
+    @include flex(row, space-between, center);
+    padding-inline: 10rem;
+
+    .footer__item-1 {
+      @include flex(column, center, start);
+    }
+    .footer__item-2 {
+      @include flex(column, center, end);
+    }
+    .footer-nav {
+      @include flex(row, auto, auto);
+      margin: 0;
+    }
   }
 }
