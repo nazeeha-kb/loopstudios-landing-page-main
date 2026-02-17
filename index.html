@@ -13,12 +13,12 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="css/style.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
+  <script defer src="main.js"></script>
   <title>Frontend Mentor | Loopstudios landing page</title>
 
 </head>
 
-<body class="josefin-sans">
+<body class="josefin-sans" id="body">
   <article class="cover">
     <!-- Header -->
     <header class="header">
@@ -26,9 +26,9 @@
         <img src="images/logo.svg" alt="Loopstudios Logo">
       </a>
       <div class="alata-regular">
-        <button class="hamburger-icon"><i class="fa-solid fa-bars"></i></button>
+        <button class="hamburger-icon" id="menu-btn" aria-expanded="false" aria-label="menu"><i class="fa-solid fa-bars" id="menu-icon"></i></button>
         <!-- Navbar -->
-        <ul class="nav-mobile" aria-label="menu" aria-expanded="false">
+        <ul class="nav-mobile josefin-sans h-screen translate-100" id="mobile-menu">
           <li class="nav__item"><a href="#">About</a></li>
           <li class="nav__item"><a href="#">Careers</a></li>
           <li class="nav__item"><a href="#">Events</a></li>
@@ -59,8 +59,8 @@
     <article class="about">
       <div class="about__item">
         <picture>
-          <source srcset="images/mobile/image-interactive.jpg" media="(max-width: 400px)">
-          <source srcset="images/desktop/image-interactive.jpg" media="(min-width: 400px)">
+          <source srcset="images/mobile/image-interactive.jpg" media="(max-width: 920px)">
+          <source srcset="images/desktop/image-interactive.jpg" media="(min-width: 920px)">
           <img src="images/desktop/image-interactive.jpg" alt="Man playing with VR headset on">
         </picture>
       </div>
@@ -81,8 +81,8 @@
         <li class="gallery__item">
           <div class="overlay"></div>
           <picture>
-            <source srcset="images/mobile/image-deep-earth.jpg" media="(max-width: 400px)">
-            <source srcset="images/desktop/image-deep-earth.jpg" media="(min-width: 400px)">
+            <source srcset="images/mobile/image-deep-earth.jpg" media="(max-width: 800px)">
+            <source srcset="images/desktop/image-deep-earth.jpg" media="(min-width: 800px)">
             <img src="images/desktop/image-deep-earth.jpg" alt="Earth view from space">
           </picture>
           <h3>Deep earth</h3>
@@ -90,8 +90,8 @@
         <li class="gallery__item">
           <div class="overlay"></div>
           <picture>
-            <source srcset="images/mobile/image-night-arcade.jpg" media="(max-width: 400px)">
-            <source srcset="images/desktop/image-night-arcade.jpg" media="(min-width: 400px)">
+            <source srcset="images/mobile/image-night-arcade.jpg" media="(max-width: 800px)">
+            <source srcset="images/desktop/image-night-arcade.jpg" media="(min-width: 800px)">
             <img src="images/desktop/image-night-arcade.jpg" alt="Arcade game">
           </picture>
           <h3>Night arcade</h3>
@@ -99,8 +99,8 @@
         <li class="gallery__item">
           <div class="overlay"></div>
           <picture>
-            <source srcset="images/mobile/image-soccer-team.jpg" media="(max-width: 400px)">
-            <source srcset="images/desktop/image-soccer-team.jpg" media="(min-width: 400px)">
+            <source srcset="images/mobile/image-soccer-team.jpg" media="(max-width: 800px)">
+            <source srcset="images/desktop/image-soccer-team.jpg" media="(min-width: 800px)">
             <img src="images/desktop/image-soccer-team.jpg" alt="Soccer player playing soccer">
           </picture>
           <h3>Soccer team VR</h3>
@@ -108,8 +108,8 @@
         <li class="gallery__item">
           <div class="overlay"></div>
           <picture>
-            <source srcset="images/mobile/image-grid.jpg" media="(max-width: 400px)">
-            <source srcset="images/desktop/image-grid.jpg" media="(min-width: 400px)">
+            <source srcset="images/mobile/image-grid.jpg" media="(max-width: 800px)">
+            <source srcset="images/desktop/image-grid.jpg" media="(min-width: 800px)">
             <img src="images/desktop/image-grid.jpg" alt="Close-up shot of front of a car">
           </picture>
           <h3>The grid</h3>
@@ -117,8 +117,8 @@
         <li class="gallery__item">
           <div class="overlay"></div>
           <picture>
-            <source srcset="images/mobile/image-from-above.jpg" media="(max-width: 400px)">
-            <source srcset="images/desktop/image-from-above.jpg" media="(min-width: 400px)">
+            <source srcset="images/mobile/image-from-above.jpg" media="(max-width: 800px)">
+            <source srcset="images/desktop/image-from-above.jpg" media="(min-width: 800px)">
             <img src="images/desktop/image-from-above.jpg" alt="Drive-way road shot from top">
           </picture>
           <h3>From up above VR</h3>
@@ -126,8 +126,8 @@
         <li class="gallery__item">
           <div class="overlay"></div>
           <picture>
-            <source srcset="images/mobile/image-pocket-borealis.jpg" media="(max-width: 400px)">
-            <source srcset="images/desktop/image-pocket-borealis.jpg" media="(min-width: 400px)">
+            <source srcset="images/mobile/image-pocket-borealis.jpg" media="(max-width: 800px)">
+            <source srcset="images/desktop/image-pocket-borealis.jpg" media="(min-width: 800px)">
             <img src="images/desktop/image-pocket-borealis.jpg" alt="Nothern lights">
           </picture>
           <h3>Pocket borealis</h3>
@@ -135,8 +135,8 @@
         <li class="gallery__item">
           <div class="overlay"></div>
           <picture>
-            <source srcset="images/mobile/image-curiosity.jpg" media="(max-width: 400px)">
-            <source srcset="images/desktop/image-curiosity.jpg" media="(min-width: 400px)">
+            <source srcset="images/mobile/image-curiosity.jpg" media="(max-width: 800px)">
+            <source srcset="images/desktop/image-curiosity.jpg" media="(min-width: 800px)">
             <img src="images/desktop/image-curiosity.jpg" alt="A rover on Mars">
           </picture>
           <h3>The curiosity</h3>
@@ -144,8 +144,8 @@
         <li class="gallery__item">
           <div class="overlay"></div>
           <picture>
-            <source srcset="images/mobile/image-fisheye.jpg" media="(max-width: 400px)">
-            <source srcset="images/desktop/image-fisheye.jpg" media="(min-width: 400px)">
+            <source srcset="images/mobile/image-fisheye.jpg" media="(max-width: 800px)">
+            <source srcset="images/desktop/image-fisheye.jpg" media="(min-width: 800px)">
             <img src="images/desktop/image-fisheye.jpg" alt="Fish eye shot of a road with trees">
           </picture>
           <h3>Make it fisheye</h3>

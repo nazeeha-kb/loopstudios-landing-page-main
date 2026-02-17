@@ -23,6 +23,63 @@ $grey-700: hsl(0, 0%, 60%);
 // font-size
 $text-para: 15px;
 
+// Scroll-based animations.
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes slide {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes clipPathAnimation {
+  from {
+    opacity: 0;
+    clip-path: inset(100% 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.hero,
+.about {
+  animation: appear linear;
+  animation-timeline: view();
+  // complete animation when entered viewport
+  // cover - ensures fully complete by the time reaches 40% of viewport
+  animation-range: entry 0% cover 40%;
+}
+
+.creations h2,
+.creations button {
+  animation: slide linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+.gallery__item {
+  animation: clipPathAnimation linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
 // Styling
 // BEM Methodology
 
@@ -66,6 +123,7 @@ li {
 }
 ul {
   padding: 0;
+  margin: 0;
 }
 
 a {
@@ -74,18 +132,38 @@ a {
   cursor: pointer;
 }
 
+// Utility classes for mobile menu
+
+.h-screen {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.translate-100 {
+  // opacity: 0;
+  transform: translateX(-30rem);
+}
+.translate-0 {
+  // opacity: 1;
+  transform: translateX(0rem);
+}
+
 // Background image for hero
 
 .cover {
   background-image: url("/images/mobile/image-hero.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  height: 54vh;
+  height: 84vh;
   color: white;
   padding: 1.5rem;
 }
 
 // Navbar and header
+
+main {
+  position: relative;
+}
 
 .header {
   @include flex(row, space-between, center);
@@ -94,6 +172,7 @@ a {
   .logo {
     display: flex;
     height: 1.5rem;
+    z-index: 20;
     img {
       height: 100%;
       width: 100%;
@@ -107,10 +186,23 @@ a {
     color: white;
     font-size: 1.2rem;
     cursor: pointer;
+    position: relative;
+    z-index: 20;
   }
 
   .nav-mobile {
-    display: none;
+    @include flex(column, start, start);
+    gap: 1.5rem;
+    padding-top: 15rem;
+    padding-left: 2rem;
+    background-color: black;
+    inset: 0;
+    z-index: 10;
+    position: absolute;
+    font-size: 100;
+    text-transform: uppercase;
+    font-size: 2rem;
+    transition: transform 0.5s linear;
   }
 
   .nav-desktop {
@@ -170,10 +262,11 @@ a {
   padding: 1.5rem;
   display: grid;
   grid-template-rows: 1fr auto 1fr;
+  grid-template-areas: "item-1" "item-3" "item-2";
   button {
     grid-row: 3/4;
     justify-self: center;
-    margin-top: 1rem;
+    margin-top: 3rem;
     background-color: white;
     border: solid black 2px;
     width: fit-content;
@@ -227,8 +320,7 @@ h3 {
   text-align: center;
   padding-block: 3.5rem;
   margin-top: 5rem;
-  .footer__item {
-  }
+
   .logo {
     height: 1.4rem;
   }
@@ -242,6 +334,8 @@ h3 {
     @include flex(row, center, center);
     gap: 1rem;
     font-size: 1.5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
   }
 
   small {
@@ -251,29 +345,33 @@ h3 {
 }
 
 // Media Queries
-
 @media (min-width: 400px) {
-  // Hide hamburger icon
-  .hamburger-icon {
-    display: none;
+  .hero .hero__item {
+    font-size: 3rem;
   }
+  .creations {
+    // padding-inline: 2.8rem;
+    .gallery {
+      gap: 2.5rem;
+    }
+    h3 {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (min-width: 500px) {
   // background image changes
   .cover {
     background-image: url("/images/desktop/image-hero.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    height: 82vh;
-    line-height: 5rem;
+    background-position: center;
+    height: 60vh;
     color: white;
-    padding-inline: 10rem;
+    padding-inline: 3rem;
     padding-top: 2rem;
     font-size: smaller;
-  }
-
-  // show desktop nav
-  .header .nav-desktop {
-    @include flex(row, center, center);
-    gap: 2rem;
   }
 
   .header .logo {
@@ -281,22 +379,80 @@ h3 {
   }
   // Hero section changes
   .hero {
-    @include flex(column, center, start);
     height: 80%;
     .hero__item {
-      border: solid white 2px;
       padding: 1.5rem;
-      font-size: 5rem;
-      width: 40rem;
+      font-size: 3.2rem;
+      line-height: 4rem;
+      width: 30rem;
     }
   }
+  main {
+    padding-inline: 4rem;
+  }
+
+  // About section
+  .about {
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+  }
+
+  // Button - creations section
+  .creations {
+    button {
+      margin-top: 3rem;
+      padding-block: 1rem;
+      padding-inline: 4rem;
+    }
+  }
+}
+
+// After 550px
+@media (min-width: 550px) {
+  .hero {
+    height: 80%;
+    .hero__item {
+      font-size: 4rem;
+      padding: 3rem;
+    }
+  }
+}
+
+// After 800
+@media (min-width: 800px) {
+  // Main
+  main {
+    padding-inline: 0.5rem;
+  }
+  .nav-mobile {
+    padding-left: 1rem;
+  }
+  // hide mobile nav
+  .header .nav-mobile {
+    display: none;
+  }
+  // Hide hamburger icon
+  .hamburger-icon {
+    display: none;
+  }
+  // show desktop nav
+  .header .nav-desktop {
+    @include flex(row, center, center);
+    gap: 2rem;
+  }
+  // Hero section
+  .hero .hero__item {
+    line-height: 5rem;
+    padding: 3rem;
+  }
+
   // About section
   .about {
     @include flex(row, center, center);
     padding-block: 10rem;
     .about-content {
-      margin-left: -13rem;
-      margin-bottom: -10rem;
+      margin-left: -25rem;
+      margin-bottom: -18rem;
       z-index: 10;
       background-color: white;
       width: 30rem;
@@ -306,19 +462,16 @@ h3 {
       }
     }
   }
-
   // Creations section
   .creations {
     grid-template-rows: 10vh 1fr;
-    // align-items: center;
-    // justify-content: center;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "item-1 item-2" "item-3 item-3";
-    padding-inline: 10rem;
     text-align: start;
 
     h2 {
-      font-size: 3rem;
+      font-size: 2.5rem;
+      align-self: center;
     }
     button {
       grid-row: auto;
@@ -328,7 +481,6 @@ h3 {
       justify-self: end;
     }
   }
-
   // Gallery
   .gallery {
     grid-template-rows: repeat(2, 1fr);
@@ -339,10 +491,10 @@ h3 {
 
   .gallery__item {
     h3 {
-      font-size: 2rem;
-      width: 10vw;
+      width: 14vw;
       bottom: 2rem;
-      left: 2rem;
+      font-size: 1.5rem;
+      left: 0.5;
     }
 
     .overlay {
@@ -354,20 +506,115 @@ h3 {
     }
   }
 
+  // Footer
   // Footer section
   .footer {
     @include flex(row, space-between, center);
-    padding-inline: 10rem;
+    padding-inline: 2.5rem;
 
+    .socials {
+      @include flex(row, center, center);
+      gap: 1rem;
+      padding: 0;
+      font-size: 1.5rem;
+    }
     .footer__item-1 {
       @include flex(column, center, start);
+      gap: 1.5rem;
     }
     .footer__item-2 {
       @include flex(column, center, end);
+      gap: 1.5rem;
     }
     .footer-nav {
       @include flex(row, auto, auto);
-      margin: 0;
+      padding-top: 0;
     }
+  }
+}
+
+// After 920
+@media (min-width: 920px) {
+  // Main
+  main {
+    padding-inline: 5rem;
+  }
+  // Cover
+  .cover {
+    line-height: 5rem;
+  }
+
+  // Hero
+  .hero {
+    @include flex(column, center, start);
+    .hero__item {
+      font-size: 5rem;
+      width: 40rem;
+    }
+
+    // About section
+    .about {
+      .about-content {
+        margin-left: -13rem;
+        margin-bottom: -10rem;
+        width: 30rem;
+        padding: 4rem;
+        h2 {
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+
+  .cover {
+    background-image: url("/images/desktop/image-hero.jpg");
+    background-size: cover;
+    height: 82vh;
+    padding-inline: 5rem;
+  }
+
+  // Craetions
+  .creations h2 {
+    font-size: 2.8rem;
+  }
+  .gallery__item {
+    h3 {
+      font-size: 1.5rem;
+      left: 1;
+    }
+  }
+}
+
+// after 1260
+@media (min-width: 1260px) {
+  .cover {
+    padding-inline: 10rem;
+  }
+  main {
+    padding-inline: 7rem;
+  }
+  .creations h2 {
+    font-size: 3rem;
+  }
+  .gallery__item {
+    h3 {
+      font-size: 2rem;
+      width: 14vw;
+      left: 2rem;
+    }
+  }
+
+  .footer {
+    padding-inline: 7rem;
+  }
+}
+
+// after 1440px
+@media (min-width: 1440px) {
+  main {
+    padding-inline: 10rem;
+  }
+  .footer {
+    padding-inline: 10rem;
   }
 }
