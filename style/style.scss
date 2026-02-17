@@ -141,7 +141,7 @@ a {
 
 .translate-100 {
   // opacity: 0;
-  transform: translateX(-30rem);
+  transform: translateX(-50rem);
 }
 .translate-0 {
   // opacity: 1;
@@ -208,6 +208,31 @@ main {
   .nav-desktop {
     display: none;
   }
+}
+
+// Navigaion - active state
+.nav__item,
+.socials__item {
+  position: relative;
+}
+
+.nav__item::after,
+.socials__item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: white;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.nav__item:hover::after,
+.socials__item:hover::after {
+  transform: scaleX(1);
 }
 
 // Hero Section
@@ -293,6 +318,15 @@ main {
 
 .gallery__item {
   position: relative;
+  &:hover {
+    h3 {
+      color: black;
+    }
+    .overlay {
+      // increasing the transparency of overlay
+      background-color: rgba(white, 0.75);
+    }
+  }
 
   .overlay {
     background: linear-gradient(to left, transparent, hsl(0, 0%, 0%));
@@ -323,6 +357,7 @@ h3 {
 
   .logo {
     height: 1.4rem;
+    display: block
   }
   .footer-nav {
     @include flex(column, center, center);
