@@ -26,22 +26,24 @@
         <img src="images/logo.svg" alt="Loopstudios Logo">
       </a>
       <div class="alata-regular">
-        <button class="hamburger-icon" id="menu-btn" aria-expanded="false" aria-label="menu"><i class="fa-solid fa-bars" id="menu-icon"></i></button>
+        <button class="hamburger-icon" id="menu-btn" aria-expanded="false" aria-label="menu"><i class="fa-solid fa-bars"
+            id="menu-icon"></i></button>
         <!-- Navbar -->
-        <ul class="nav-mobile josefin-sans h-screen translate-100" id="mobile-menu">
-          <li class="nav__item"><a href="#">About</a></li>
-          <li class="nav__item"><a href="#">Careers</a></li>
-          <li class="nav__item"><a href="#">Events</a></li>
-          <li class="nav__item"><a href="#">Products</a></li>
-          <li class="nav__item"><a href="#">Support</a></li>
-        </ul>
-        <ul class="nav-desktop">
-          <li class="nav__item"><a href="#">About</a></li>
-          <li class="nav__item"><a href="#">Careers</a></li>
-          <li class="nav__item"><a href="#">Events</a></li>
-          <li class="nav__item"><a href="#">Products</a></li>
-          <li class="nav__item"><a href="#">Support</a></li>
-        </ul>
+        <nav>
+          <ul class="nav-mobile josefin-sans h-screen translate-100" id="mobile-menu">
+            <li class="nav__item"><a href="#">About</a></li>
+            <li class="nav__item"><a href="#">Careers</a></li>
+            <li class="nav__item"><a href="#">Events</a></li>
+            <li class="nav__item"><a href="#">Products</a></li>
+            <li class="nav__item"><a href="#">Support</a></li>
+          </ul>
+          <ul class="nav-desktop">
+            <li class="nav__item"><a href="#">About</a></li>
+            <li class="nav__item"><a href="#">Careers</a></li>
+            <li class="nav__item"><a href="#">Events</a></li>
+            <li class="nav__item"><a href="#">Products</a></li>
+            <li class="nav__item"><a href="#">Support</a></li>
+          </ul>
         </nav>
       </div>
     </header>
@@ -156,9 +158,9 @@
 
   <footer class="footer alata-regular ">
     <div class="footer__item-1">
-      <div class="logo">
+      <a class="logo">
         <img src="images/logo.svg" alt="Loopstudios icon">
-      </div>
+      </a>
       <nav>
         <ul class="footer-nav">
           <li><a href="#">About</a></li>
@@ -171,10 +173,11 @@
     </div>
     <div class="footer__item-2">
       <ul class="socials">
-        <li class="socials__item"><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
-        <li class="socials__item"><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-        <li class="socials__item"><a href="#"><i class="fa-brands fa-pinterest"></i></a></li>
-        <li class="socials__item"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+        <li aria-label="facebook" class="socials__item"><a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+        </li>
+        <li aria-label="twitter" class="socials__item"><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+        <li aria-label="pinterest" class="socials__item"><a href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+        <li aria-label="instagram" class="socials__item"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
       </ul>
       <small>© 2021 Loopstudios. All rights reserved.</small>
     </div>
