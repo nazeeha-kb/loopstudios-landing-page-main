@@ -3,17 +3,32 @@ const menuIcon = document.getElementById("menu-icon")
 const menuBtn = document.getElementById("menu-btn");
 const mobileMenu = document.getElementById("mobile-menu");
 
+const setInert = (el, inert) => {
+    if (!el) return;
+
+    // check if browser supports native API
+    if ('inert' in HTMLElement.prototype) {
+        // set the native property to true/false - the subtree becomes non-interactive
+        el.inert = inert;
+    } else {
+        // polyfill listens for attribute changes
+        if (inert) el.setAttribute('inert', '');
+        else el.removeAttribute('inert');
+    }
+
+    el.setAttribute('aria-hidden', inert ? 'true' : 'false');
+};
 
 const toggleMenu = () => {
     console.log("menu toggled")
 
     if (menuBtn.getAttribute("aria-expanded") === "false") {
         menuBtn.setAttribute("aria-expanded", true)
-        console.log("opened")
+        setInert(menu, false);
     }
     else {
         menuBtn.setAttribute("aria-expanded", false)
-        console.log("closed")
+        setInert(menu, true);
     }
 
     // Toggle classes
