@@ -24,11 +24,11 @@ const toggleMenu = () => {
 
     if (menuBtn.getAttribute("aria-expanded") === "false") {
         menuBtn.setAttribute("aria-expanded", true)
-        setInert(menu, false);
+        setInert(mobileMenu, false);
     }
     else {
         menuBtn.setAttribute("aria-expanded", false)
-        setInert(menu, true);
+        setInert(mobileMenu, true);
     }
 
     // Toggle classes
